@@ -21,7 +21,7 @@ const [selected,setSelected] = useState("home");
                     <button
                       key={item.id}
                       onClick={()=>setSelected(item.id)}
-                      className={`transition cursor-pointer text-center items-center ${selected === item.id
+                      className={`transition cursor-pointer text-center items-center text-sm ${selected === item.id
                         ? "text-[#2F2FE4] font-bold"
                         : "text-white "
                       }`}
@@ -32,7 +32,7 @@ const [selected,setSelected] = useState("home");
                     </div>
                   ))}
               </div>
-              <input type='button' value={"شروع همکاری"} className='md:h-[50px] md:w-[115px] bg-[#2F2FE4] rounded-[8px]'></input>
+              <input type='button' value={"شروع همکاری"} className='transition cursor-pointer h-[45px] w-[90px] text-sm md:text-md md:h-[50px] md:w-[115px] bg-[#2F2FE4] rounded-[8px] hover:shadow-md shadow-[#1A1953] active:shadow-[#1A1953] active:bg-[#1A1953]'></input>
             </div>
 
   )
