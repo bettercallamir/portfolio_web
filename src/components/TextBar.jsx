@@ -3,7 +3,7 @@ import Button from './Button'
 
 export default function TextBar() {
   return (
-    <div className={`overflow-hidden pt-10 flex flex-col w-[45dvw] h-full text-white bg-gray-800`}>
+    <div className={`overflow-hidden pt-10 flex flex-col w-[45dvw] h-full text-white `}>
         <div className='lg:ml-[95px] flex items-center rounded-md p-4 border-1 border-[#EBEBEB] gap-2 w-[120px] h-[35px] text-sm text-center '>
             <span className='w-[10px] h-[10px] bg-[#6DFF8D] rounded-full animate-pulse'></span>
          در درسترس</div>
@@ -19,8 +19,8 @@ export default function TextBar() {
         </div>
 
         <div className='flex gap-2 w-full justify-end pt-[9px] '>
-            <Button text={"شروع همکاری"} type={0}/>
             <Button text={"مشاهده نمونه کار"} type={1}></Button>
+            <Button text={"شروع همکاری"} type={0} arrow={true}/>
         </div>
         
     </div>
