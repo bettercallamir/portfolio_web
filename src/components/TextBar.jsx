@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from './Button'
 import Counter from './Counter'
+import Console from './Console'
 
 export default function TextBar() {
   return (
@@ -11,7 +12,13 @@ export default function TextBar() {
 
         <div className='w-full flex flex-col  pt-8 text-5xl font-bold items-end text-right'>
             <h1>طراحی و توسعه وب</h1>
-            <h2>مدرن</h2>
+<h2
+  dir="rtl"
+  className="inline-block pb-5 pt-2 bg-gradient-to-r from-[#2F2FE4] to-white bg-clip-text text-transparent"
+  style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+>
+  Modern Web Design
+</h2>
         </div>
 
         <div className='w-[385px] flex flex-col  pt-8 text-xl items-end text-right'>
@@ -25,6 +32,10 @@ export default function TextBar() {
         </div>
         
         <Counter/>
+        <div className='self-start lg:pl-[95px]'><Console/> </div>
+        
+
+        
     </div>
   )
 }
