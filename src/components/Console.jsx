@@ -24,7 +24,24 @@ const codes = [
 ]`,
 ];
 
+const getTypingDelay = (char)=>{
+  if (char === "\n") return 180;
+  if (char === " ") return 25;
 
+  if (["{", "}", "[", "]"].includes(char)) {
+    return 120 + Math.random() * 100;
+  }
+
+  if ([",", ":", "="].includes(char)) {
+    return 100 + Math.random() * 120;
+  }
+
+  if (Math.random() < 0.06) {
+    return 250 + Math.random() * 400;
+  }
+
+  return 35 + Math.random() * 45;
+}
 
 export default function Console() {
   const [code,setCode] = useState("");
@@ -33,24 +50,43 @@ export default function Console() {
 
   useEffect(()=>{
     const currentCode = codes[codeIndex];
-    const speed = isDeleting ? 25:45;
 
-    const timer = setTimeout(()=>{
-      if (!isDeleting){
-        setCode(currentCode.substring(0, code.length+1));
+    let speed;
 
-        if (code.length === currentCode.length) {
-          setTimeout(()=> setIsDeleting(true), 1800);
-        }
-      } else {
-        setCode(currentCode.substring(0, code.length - 1));
-        if (code.length === 0) {
-          setIsDeleting(false);
-          setCodeIndex((prev) => (prev + 1) % codes.length);
-        }
+    if (!isDeleting) {
+
+      if (code.length < currentCode.length) {
+        const nextChar = currentCode[code.length];
+
+        speed = getTypingDelay(nextChar);
+
+        const timer = setTimeout(() => {
+          setCode(currentCode.slice(0, code.length + 1));
+        }, speed);
+
+        return () => clearTimeout(timer);
       }
-    },speed)
-    return () => clearTimeout(timer);
+
+      const timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, 2200);
+
+      return () => clearTimeout(timer);
+    }
+
+    if (code.length > 0) {
+      speed = 25 + Math.random() * 20;
+
+      const timer = setTimeout(() => {
+        setCode(currentCode.slice(0, code.length - 1));
+      }, speed);
+
+      return () => clearTimeout(timer);
+    }
+
+
+    setIsDeleting(false);
+    setCodeIndex((prev) => (prev + 1) % codes.length);
   },[code,isDeleting,codeIndex])
   return (
     <div className={`w-[300px] h-[40dvh] bg-gray-700 rounded-3xl bg-gradient-to-b from-[#11206C] to-[#080616]`}>
