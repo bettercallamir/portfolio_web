@@ -2,14 +2,14 @@ import { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
 import TextBar from './components/TextBar'
-import Counter from './components/Counter'
+
 
 function App() {
 
 
   return (
     <>
-      <div className='h-[100dvh] w-[100dvw] bg-[#080616]'>
+      <div className='h-screen w-dvw bg-[#080616] flex flex-col'>
        <NavBar/>
        <TextBar/>
 
