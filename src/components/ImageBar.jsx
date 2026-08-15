@@ -23,7 +23,12 @@ export default function ImageBar() {
             window.addEventListener("mousemove", handleMouseMoveEvent);
         }
   return (
-    <div className={`relative flex items-center justify-center w-[45dvw] flex-1`} onMouseMove={handleMouseMoveEvent}>
+    <div className={`block relative flex items-center justify-center w-[45dvw] flex-1 sm-hidden`} onMouseMove={handleMouseMoveEvent}>
+    <svg className='absolute top-1/6' width="580" height="290" viewBox="0 0 580 290" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M578.5 290C578.5 213.485 548.105 140.104 494 85.9997C439.896 31.8955 366.515 1.50001 290 1.5C213.485 1.49999 140.104 31.8954 85.9997 85.9997C31.8955 140.104 1.50001 213.485 1.5 290" stroke="#EBEBEB" stroke-width="3"/>
+    </svg>
+
+
         <div className={`
         absolute
         w-[430px]
