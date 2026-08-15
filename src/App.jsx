@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import NavBar from './components/NavBar'
 import TextBar from './components/TextBar'
+import ImageBar from './components/ImageBar'
 
 
 function App() {
@@ -11,7 +12,10 @@ function App() {
     <>
       <div className='h-screen w-dvw bg-[#080616] flex flex-col'>
        <NavBar/>
-       <TextBar/>
+       <div className='flex'>
+        <TextBar/>
+        <ImageBar/>
+       </div>
 
       </div>
     </>
