@@ -5,6 +5,19 @@ export default function ImageBar() {
     const [xmouse , setXMouse] = useState({x: 0 ,y: 0})
     const [mouse, setMouse] =useState({x:0 , y:0})
 
+    const handleLineMouseEvent = (e)=>{
+       const rect = e.currentTarget.getBoundingClientRect();
+
+       const mouseX = e.clientX - rect.left;
+       const mouseY = e.clientY - rect.top;
+
+       setMouse({
+        x:mouseX,
+        y:mouseY,
+       })
+
+    }
+
     const handleMouseMoveEvent = (e)=>{
             const rect = e.currentTarget.getBoundingClientRect();
 
@@ -21,12 +34,7 @@ export default function ImageBar() {
                 y: moveY,
             })
 
-            setMouse({
-              x:mouseX,
-              y:mouseY,
-            })
 
-            window.addEventListener("mousemove", handleMouseMoveEvent);
         }
 
         const dots = Array.from({length:14},(_,i)=>{
@@ -42,7 +50,7 @@ export default function ImageBar() {
         })
   return (
     <div className={`block relative flex items-center justify-center w-[45dvw] flex-1 sm-hidden`} onMouseMove={handleMouseMoveEvent}>
-    <svg className='absolute top-1/6 left-1/2 -translate-x-1/2 w-[580px] h-[300px]' width="580" height="290" viewBox="0 0 580 290" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg onMouseMove={handleLineMouseEvent} onMouseLeave={()=>setMouse({x:0,y:0})} className='absolute top-1/6 left-1/2 -translate-x-1/2 w-[580px] h-[300px]' width="580" height="290" viewBox="0 0 580 290" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M578.5 290C578.5 213.485 548.105 140.104 494 85.9997C439.896 31.8955 366.515 1.50001 290 1.5C213.485 1.49999 140.104 31.8954 85.9997 85.9997C31.8955 140.104 1.50001 213.485 1.5 290" stroke="#EBEBEB" stroke-width="3"/>
     {dots.map((dot,i)=>{
       const dx = mouse.x - dot.x;
@@ -52,9 +60,10 @@ export default function ImageBar() {
 
       const influence = Math.max (0, 1 - distance / 100);
 
-      let baseScale = 2;
+      let baseScale = 6;
+      let maxScale = 12
 
-      const scale = baseScale + influence * 2;
+      const scale = baseScale + influence * (maxScale - baseScale);
 
       console.log(dot.x,dot.y)
 
@@ -63,13 +72,10 @@ export default function ImageBar() {
           key={i}
           cx={dot.x}
           cy={dot.y}
-          r="3"
+          r={scale}
           fill='white'
-          style={{
-            transform: `scale(${scale})`,
-            transformOrigin: `${dot.x}px ${dot.y}px`,
-            transition:"transform 0.15s ease-out",
-          }}
+          style={{transition:`0.12s`}}
+
         ></circle>
       )
     })}
