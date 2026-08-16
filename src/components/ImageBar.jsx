@@ -37,8 +37,8 @@ export default function ImageBar() {
 
         }
 
-        const dots = Array.from({length:14},(_,i)=>{
-            const angle = Math.PI * (i / 5);
+        const dots = Array.from({length:5},(_,i)=>{
+            const angle = Math.PI * (i / 4);
             const radius = 288.5;
 
             return{
@@ -50,7 +50,7 @@ export default function ImageBar() {
         })
   return (
     <div className={`block relative flex items-center justify-center w-[45dvw] flex-1 sm-hidden`} onMouseMove={handleMouseMoveEvent}>
-    <svg onMouseMove={handleLineMouseEvent} onMouseLeave={()=>setMouse({x:0,y:0})} className='absolute top-1/6 left-1/2 -translate-x-1/2 w-[580px] h-[300px]' width="580" height="290" viewBox="0 0 580 290" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg onMouseMove={handleLineMouseEvent} onMouseLeave={()=>setMouse({x:0,y:0})} className='absolute top-1/6 left-1/2 -translate-x-1/2 w-[580px] h-[300px] overflow-visible' width="580" height="290" viewBox="0 0 580 290" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M578.5 290C578.5 213.485 548.105 140.104 494 85.9997C439.896 31.8955 366.515 1.50001 290 1.5C213.485 1.49999 140.104 31.8954 85.9997 85.9997C31.8955 140.104 1.50001 213.485 1.5 290" stroke="#EBEBEB" stroke-width="3"/>
     {dots.map((dot,i)=>{
       const dx = mouse.x - dot.x;
